@@ -1,12 +1,10 @@
 import React from "react";
 import { AuthPage } from "./pages/auth-page/auth-page";
 
-function App() {
+export const App: React.FC = () => {
   return (
     <div className="App">
       <AuthPage />
     </div>
   );
-}
-
-export default App;
+};
