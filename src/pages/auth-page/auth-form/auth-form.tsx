@@ -15,7 +15,9 @@ export const AuthForm: React.FC = () => {
         type="password"
         autoComplete="current-password"
       />
-      <Button>Login</Button>
+      <Button variant="contained" aria-label="primary">
+        Login
+      </Button>
     </div>
   );
 };
