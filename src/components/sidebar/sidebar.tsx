@@ -14,9 +14,12 @@ import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
+import SoupKitchenIcon from "@mui/icons-material/SoupKitchen";
 import Typography from "@mui/material/Typography";
 import BasicTable from "../table/table";
 import { NavLink } from "react-router-dom";
+import AccountMenu from "../accaunt-menu/accaunt-menu";
+import styled from "styled-components";
 
 const drawerWidth = 240;
 
@@ -24,10 +27,20 @@ interface Props {
   window?: () => Window;
 }
 
+const FlexWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const KitchenLogoFont = styled.h5`
+  font-family: "Pacifico";
+`;
+
 export default function SideBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [navText, setNavText] = React.useState("")
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -35,7 +48,16 @@ export default function SideBar(props: Props) {
 
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar>
+        <Typography
+          style={{ display: "flex", alignItems: "center", gap: "15px" }}
+          variant="h5"
+          noWrap
+          component="div"
+        >
+          <KitchenLogoFont />Our Kitchen<SoupKitchenIcon />
+        </Typography>
+      </Toolbar>
       <Divider />
       <List>
         {[
@@ -47,7 +69,7 @@ export default function SideBar(props: Props) {
           "Kmdir",
           "Chotki",
         ].map((text, index) => (
-          <NavLink onClick={() => setNavText(text)} className={navText === text ? "active" : ""} to={`/${text}`}>
+          <NavLink to={`/${text}`}>
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -85,9 +107,12 @@ export default function SideBar(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Kitchen Dashboard
-          </Typography>
+          <FlexWrapper>
+            <Typography variant="h6" noWrap component="div">
+              Kitchen Dashboard
+            </Typography>
+            <AccountMenu />
+          </FlexWrapper>
         </Toolbar>
       </AppBar>
       <Box
