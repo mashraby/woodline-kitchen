@@ -35,7 +35,7 @@ const rows = [
 
 export default function BasicTable() {
   return (
-    <div style={{ marginTop: "70px", height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
