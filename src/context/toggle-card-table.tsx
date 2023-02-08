@@ -1,13 +1,24 @@
-import { createContext } from "react"
+import React, { createContext, useState } from "react";
 
-type ToggleType = boolean
+// interface IToggleCardContext {
+//   isToggleCard: boolean;
+//   setIsToggleCard?: (c: boolean) => void;
+// }
 
-const ToggleCardContext = createContext<ToggleType>(false)
+// interface AuxProps {
+//     children: React.ReactNode
+// }
 
-// export default function toggleCard(children: ToggleType) {
-//   return (
-//     // <ToggleCardContext.Provider>
-//     //   { ...children }
-//     // </ToggleCardContext.Provider>
-//   )
+// const defaultState = {
+//   isToggleCard: false,
+// };
+
+// const ToggleCardContext = createContext<IToggleCardContext>(defaultState);
+
+// const [isToggleCard, setIsToggleCard] = useState<IToggleCardContext>(defaultState)
+// function Provider(props: AuxProps) {
+
+//     <ToggleCardContext.Provider value={{isToggleCard, setIsToggleCard}}>
+//         { props.children }
+//     </ToggleCardContext.Provider>
 // }
