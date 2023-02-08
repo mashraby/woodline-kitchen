@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
         src: url("../fonts/pacifico-v22-latin-regular.woff2") format("woff2"),
             url("../fonts/pacifico-v22-latin-regular.woff") format("woff"),
             url("../fonts/pacifico-v22-latin-regular.ttf") format("truetype");
-  }
+      }
 
     * {
         margin: 0;

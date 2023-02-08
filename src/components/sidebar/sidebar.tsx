@@ -17,8 +17,12 @@ import Toolbar from "@mui/material/Toolbar";
 import SoupKitchenIcon from "@mui/icons-material/SoupKitchen";
 import Typography from "@mui/material/Typography";
 import BasicTable from "../table/table";
+import TableRowsIcon from "@mui/icons-material/TableRows";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import { NavLink } from "react-router-dom";
 import AccountMenu from "../accaunt-menu/accaunt-menu";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
 import styled from "styled-components";
 
 const drawerWidth = 240;
@@ -55,7 +59,9 @@ export default function SideBar(props: Props) {
           noWrap
           component="div"
         >
-          <KitchenLogoFont />Our Kitchen<SoupKitchenIcon />
+          <KitchenLogoFont />
+          Our Kitchen
+          <SoupKitchenIcon />
         </Typography>
       </Toolbar>
       <Divider />
@@ -108,9 +114,18 @@ export default function SideBar(props: Props) {
             <MenuIcon />
           </IconButton>
           <FlexWrapper>
-            <Typography variant="h6" noWrap component="div">
-              Kitchen Dashboard
-            </Typography>
+            <ButtonGroup
+              disableElevation
+              variant="contained"
+              aria-label="Disabled elevation buttons"
+            >
+              <Button aria-label="outlined">
+                <TableRowsIcon />
+              </Button>
+              <Button>
+                <DashboardIcon />
+              </Button>
+            </ButtonGroup>
             <AccountMenu />
           </FlexWrapper>
         </Toolbar>
