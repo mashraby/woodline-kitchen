@@ -7,7 +7,9 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import GlobalStyle from "./globals/GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:9000"
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
