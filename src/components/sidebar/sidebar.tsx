@@ -1,5 +1,5 @@
 import * as React from "react";
-import BasicTable from "../table/table";
+import {BasicTable} from "../table/table";
 import RecipeReviewCard from "../card/card";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -31,6 +31,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import PeopleIcon from "@mui/icons-material/People";
 import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
 import FoodBankIcon from '@mui/icons-material/FoodBank';
+import { IPerson, MiniDrawerProps } from "../../interfaces/users.interfaces";
 
 const FlexWrapper = styledC.div`
   width: 100%;
@@ -150,11 +151,12 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export const MiniDrawer: React.FC<MiniDrawerProps> = (props) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [isToggleCard, setIsToggleCard] = React.useState(false);
-
+  console.log(props.users);
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -264,7 +266,7 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {isToggleCard ? <RecipeReviewCard /> : <BasicTable />}
+        {isToggleCard ? <RecipeReviewCard /> : <BasicTable users={props.users} />}
       </Box>
     </Box>
   );
