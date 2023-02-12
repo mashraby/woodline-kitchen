@@ -7,6 +7,8 @@ export const UsersPage: React.FC = () => {
   const [users, setUsers] = useState<IPerson[]>([]);
   
   useEffect(() => {
+    console.log(users);
+    
     getUsers().then(data => setUsers(data))
   }, [])
 

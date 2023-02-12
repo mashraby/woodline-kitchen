@@ -7,10 +7,12 @@ export const getUsers = (): Promise<Array<IPerson>> => {
         .catch((err: AxiosError) => console.log(err))
 }
 
-export const postBalance = (...params: any): void => {
+export const postBalance = (id: string, amount: number | undefined, type: boolean): void => {
     axios.post("/user/balance", {
-        id: params.id,
-        amount: params.amount
+        id,
+        amount,
+        type,
+        date: "2023-02-12"
     })
     .then((res: AxiosResponse) => console.log(res))
     .catch((err: AxiosError) => console.log(err))
