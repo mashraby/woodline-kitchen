@@ -19,6 +19,7 @@ export interface MiniDrawerProps {
 
 export interface IRow {
     id: number
+    user_id: string
     fullname: string
     phone_number: string
     telegram_id: number
@@ -26,6 +27,7 @@ export interface IRow {
 }
 
 export interface IOpenModalProps {
+    userId: string
     open: boolean
     setOpen: (newOpen: boolean) => void
     text: string

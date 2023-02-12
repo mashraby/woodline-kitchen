@@ -29,11 +29,13 @@ export const BasicTable: React.FC<MiniDrawerProps> = (props) => {
   const [open, setOpen] = useState(false)
   const [text, setText] = useState("")
   const [balance, setBalance] = useState()
+  const [userId, setUserId] = useState("")
 
   users?.forEach((e, i) => {
     rows.push({
       id: i + 1,
-      fullname: e.fullname,
+      user_id: e._id,
+      fullname: e.fullname, 
       phone_number: e.phone_number,
       telegram_id: e.telegram_id,
       balance: e.balance
@@ -44,11 +46,13 @@ export const BasicTable: React.FC<MiniDrawerProps> = (props) => {
     setOpen(true)
     setText(params.row.fullname)
     setBalance(params.row.balance)
+    setUserId(params.row.user_id)
   };
 
   return (
-    <>
-      <BasicModal open={open} setOpen={setOpen} text={text} balance={balance}  />
+    <>  
+      <BasicModal open={open} setOpen={setOpen} text={text} balance={balance} userId={userId}  />
+
       <div style={{ height: 540, width: "100%" }}>
         <DataGrid
           onRowClick={handleRowClick}
