@@ -31,7 +31,7 @@ export const BasicTable: React.FC<MiniDrawerProps> = (props) => {
   const [balance, setBalance] = useState()
   const [userId, setUserId] = useState("")
 
-  users.forEach((e, i) => {
+  users?.forEach((e, i) => {
     rows.push({
       id: i + 1,
       user_id: e._id,
@@ -52,6 +52,7 @@ export const BasicTable: React.FC<MiniDrawerProps> = (props) => {
   return (
     <>  
       <BasicModal open={open} setOpen={setOpen} text={text} balance={balance} userId={userId}  />
+
       <div style={{ height: 540, width: "100%" }}>
         <DataGrid
           onRowClick={handleRowClick}
