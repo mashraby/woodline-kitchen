@@ -1,6 +1,5 @@
 import * as React from "react";
-import {BasicTable} from "../table/table";
-import RecipeReviewCard from "../card/card";
+import {BasicTable} from "../../pages/users-page/users-table/users-table";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { NavLink } from "react-router-dom";
@@ -154,8 +153,6 @@ const Drawer = styled(MuiDrawer, {
 export const MiniDrawer: React.FC<MiniDrawerProps> = (props) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [isToggleCard, setIsToggleCard] = React.useState(false);
-  console.log(props.users);
   
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -195,18 +192,6 @@ export const MiniDrawer: React.FC<MiniDrawerProps> = (props) => {
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
-            <ButtonGroup
-              disableElevation
-              variant="contained"
-              aria-label="Disabled elevation buttons"
-            >
-              <Button onClick={() => setIsToggleCard(false)}>
-                <TableRowsIcon />
-              </Button>
-              <Button onClick={() => setIsToggleCard(true)}>
-                <DashboardIcon />
-              </Button>
-            </ButtonGroup>
           </FlexWrapper>
         </Toolbar>
       </AppBar>
@@ -266,7 +251,7 @@ export const MiniDrawer: React.FC<MiniDrawerProps> = (props) => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {isToggleCard ? <RecipeReviewCard /> : <BasicTable users={props.users} />}
+         <BasicTable users={props.users} />
       </Box>
     </Box>
   );
