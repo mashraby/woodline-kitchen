@@ -1,9 +1,5 @@
 import * as React from "react";
-import {BasicTable} from "../../pages/users-page/users-table/users-table";
-import TableRowsIcon from "@mui/icons-material/TableRows";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import { NavLink } from "react-router-dom";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -30,7 +26,6 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import PeopleIcon from "@mui/icons-material/People";
 import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import { IPerson, MiniDrawerProps } from "../../interfaces/users.interfaces";
 
 const FlexWrapper = styledC.div`
   width: 100%;
@@ -150,7 +145,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export const MiniDrawer: React.FC<MiniDrawerProps> = (props) => {
+export const MiniDrawer: React.FC = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   
@@ -249,10 +244,6 @@ export const MiniDrawer: React.FC<MiniDrawerProps> = (props) => {
           </NavLink>
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-         <BasicTable users={props.users} />
-      </Box>
     </Box>
   );
 }

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TextField, Typography, Button, Modal, Box } from "@mui/material";
 import { IOpenModalProps } from "../../../interfaces/users.interfaces";
 import { postBalance } from "../../../services/api";
+import { BalanceContext } from "../../../context/change-balance-context";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute" as "absolute",
@@ -16,12 +18,21 @@ const style = {
 };
 
 export const BasicModal: React.FC<IOpenModalProps> = (props) => {
-  const { setOpen, open, text, balance, userId } = props;
+  const { setOpen, open, text, userId } = props;
   const handleClose = () => setOpen(false);
   const [changeBalance, setChangeBalance] = useState<number>();
+  const { setIsClicked, isClicked } = useContext(BalanceContext);
 
   const handleChangeBalance = (): void => {
-    postBalance(userId, changeBalance, true);
+    setIsClicked(!isClicked);
+
+    postBalance(userId, changeBalance, true)
+      .then(res => console.log(res))
+      .finally((): void => {
+      setOpen(false);
+      setIsClicked(!isClicked);
+      toast.success("Balance qo'shildi");
+    });
   };
 
   return (
@@ -48,10 +59,9 @@ export const BasicModal: React.FC<IOpenModalProps> = (props) => {
             ): void => {
               setChangeBalance(+e.target.value);
             }}
-            defaultValue={balance}
             sx={{ width: 1, mb: 1.5 }}
             id="outlined-basic"
-            label="Change balance"
+            label="Add balance"
             variant="outlined"
           />
           <Button
@@ -59,7 +69,7 @@ export const BasicModal: React.FC<IOpenModalProps> = (props) => {
             sx={{ width: 1 }}
             variant="outlined"
           >
-            Change balance
+            Add balance
           </Button>
         </Box>
       </Modal>
