@@ -111,9 +111,10 @@ function createData(
 export const CustomizedTables: React.FC<MiniDrawerProps> = (props) => {
   const rows: IRow[] = [];
   const users: IPerson[] = props.users as any;
-  const [open, setOpen] = useState(false);
-  const [text, setText] = useState("");
-  const [userId, setUserId] = useState("");
+  const [open, setOpen] = useState<boolean>(false);
+  const [text, setText] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+  const [balance, setBalance] = useState<number>();
 
   users?.forEach((e, i) => {
     rows.push({
@@ -122,6 +123,7 @@ export const CustomizedTables: React.FC<MiniDrawerProps> = (props) => {
       fullname: e.fullname,
       phone_number: e.phone_number,
       telegram_id: e.telegram_id,
+      balance: e.balance
     });
   });
 
@@ -129,13 +131,14 @@ export const CustomizedTables: React.FC<MiniDrawerProps> = (props) => {
     setOpen(true);
     setText(user.fullname);
     setUserId(user._id);
+    setBalance(user.balance)
   };
-
+  
   return (
     <>
-      <BasicModal open={open} setOpen={setOpen} text={text} userId={userId} />
-      <TableContainer sx={{ flexGrow: 1, p: 3 }} component={Paper}>
-        <Table aria-label="customized table">
+      <BasicModal open={open} setOpen={setOpen} text={text} userId={userId} balance={balance} />
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
@@ -147,10 +150,7 @@ export const CustomizedTables: React.FC<MiniDrawerProps> = (props) => {
           </TableHead>
           <TableBody>
             {users?.map((user, index) => (
-              <StyledTableRow
-                onClick={() => handleRowClick(user)}
-                key={user._id}
-              >
+              <StyledTableRow onClick={()=> handleRowClick(user)} key={user._id}>
                 <StyledTableCell component="th" scope="row">
                   {index + 1}
                 </StyledTableCell>

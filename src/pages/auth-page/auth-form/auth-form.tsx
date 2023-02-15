@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, TextField, Button } from "@mui/material";
 import styled from "styled-components";
+import { ILogin } from "../../../interfaces/login.interfaces";
+import { login } from "../../../services/api";
 
 const AuthWrapper = styled.div`
   padding: 20px;
@@ -20,19 +22,39 @@ const Title = styled.h4`
 `;
 
 export const AuthForm: React.FC = () => {
+  const [loginData, setLoginData] = useState<ILogin>({
+    username: "",
+    password: "",
+  });
+
+  const handleLogin = (): void => {
+    login(loginData.username, loginData.password).then(res => {
+      console.log(res);
+    })
+  } 
+
   return (
     <AuthWrapper>
       <Typography className="auth-form__heading" variant="h4" component="div">
         <Title>Login</Title>
       </Typography>
-      <TextField id="outlined-basic" label="Username" variant="outlined" />
+      <TextField 
+        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+          setLoginData({ ...loginData, username: e.target.value })
+        }}
+        id="outlined-basic" 
+        label="Username" 
+        variant="outlined" />
       <TextField
+        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+          setLoginData({ ...loginData, password: e.target.value })
+        }}
         id="outlined-password-input"
         label="Password"
         type="password"
         autoComplete="current-password"
       />
-      <Button variant="contained" aria-label="primary">
+      <Button onClick={handleLogin} variant="contained" aria-label="primary">
         Login
       </Button>
     </AuthWrapper>

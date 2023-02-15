@@ -13,7 +13,7 @@ export const App: React.FC = () => {
     <div className="App">
       <ToastContainer autoClose={3000} />
       <Routes>
-        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/login" element={<AuthPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/roles" element={<RolesPage />} />
         <Route path="/products" element={<ProductsPage />} />

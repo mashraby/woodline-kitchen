@@ -18,7 +18,7 @@ const style = {
 };
 
 export const BasicModal: React.FC<IOpenModalProps> = (props) => {
-  const { setOpen, open, text, userId } = props;
+  const { setOpen, open, text, userId, balance } = props;
   const handleClose = () => setOpen(false);
   const [changeBalance, setChangeBalance] = useState<number>();
   const { setIsClicked, isClicked } = useContext(BalanceContext);
@@ -50,7 +50,15 @@ export const BasicModal: React.FC<IOpenModalProps> = (props) => {
             variant="h6"
             component="h2"
           >
-            {text + "'s" + " balance"}
+            {"Fullname: " + text}
+          </Typography>
+          <Typography
+            sx={{ mb: 1.5 }}
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
+            {"Balance: " + balance} 
           </Typography>
           <TextField
             type="number"

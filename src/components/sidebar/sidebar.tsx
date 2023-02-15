@@ -6,7 +6,6 @@ import InputBase from "@mui/material/InputBase";
 import { styled as muiStyled, alpha } from "@mui/material/styles";
 import styledC from "styled-components";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -158,7 +157,7 @@ export const MiniDrawer: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+      <>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -244,6 +243,6 @@ export const MiniDrawer: React.FC = () => {
           </NavLink>
         </List>
       </Drawer>
-    </Box>
+      </>
   );
 }
