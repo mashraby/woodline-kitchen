@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { TextField, Typography, Button, Modal, Box } from "@mui/material";
 import { IOpenModalProps } from "../../../interfaces/users.interfaces";
 import { postBalance } from "../../../services/api";
-import { BalanceContext } from "../../../context/change-balance-context";
+import { ReloadContext } from "../../../context/reload.context";
 import { toast } from "react-toastify";
 
 const style = {
@@ -21,18 +21,17 @@ export const BasicModal: React.FC<IOpenModalProps> = (props) => {
   const { setOpen, open, text, userId, balance } = props;
   const handleClose = () => setOpen(false);
   const [changeBalance, setChangeBalance] = useState<number>();
-  const { setIsClicked, isClicked } = useContext(BalanceContext);
+  const { reload, setReload } = useContext(ReloadContext);
 
   const handleChangeBalance = (): void => {
-    setIsClicked(!isClicked);
-
+    setReload(!reload);
     postBalance(userId, changeBalance, true)
-      .then(res => console.log(res))
+      .then((res) => console.log(res))
       .finally((): void => {
-      setOpen(false);
-      setIsClicked(!isClicked);
-      toast.success("Balance qo'shildi");
-    });
+        setOpen(false);
+        setReload(!reload);
+        toast.success("Balance qo'shildi");
+      });
   };
 
   return (
@@ -58,7 +57,7 @@ export const BasicModal: React.FC<IOpenModalProps> = (props) => {
             variant="h6"
             component="h2"
           >
-            {"Balance: " + balance} 
+            {"Balance: " + balance}
           </Typography>
           <TextField
             type="number"
