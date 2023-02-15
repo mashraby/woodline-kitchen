@@ -3,72 +3,9 @@ import { useState } from "react";
 import {
   IPerson,
   IRow,
-  MiniDrawerProps,
+  UsersTableProps,
 } from "../../../interfaces/users.interfaces";
 import { BasicModal } from "../change-balance-modal/change-balance-modal";
-
-// const columns: GridColDef[] = [
-//   { field: "id", headerName: "ID", width: 70 },
-//   { field: "fullname", headerName: "Full name", width: 130 },
-//   {
-//     field: "telegram_id",
-//     headerName: "Telegram ID",
-//     width: 90,
-//   },
-//   {
-//     field: "phone_number",
-//     headerName: "Phone number",
-//     width: 130,
-//   },
-//   {
-//     field: "balance",
-//     headerName: "Balance",
-//     type: "number",
-//   }
-// ];
-
-// export const BasicTable: React.FC<MiniDrawerProps> = (props) => {
-//   const rows: IRow[] = []
-//   const users: IPerson[] = props.users as any;
-//   const [open, setOpen] = useState(false)
-//   const [text, setText] = useState("")
-//   const [userId, setUserId] = useState("")
-
-//   users?.forEach((e, i) => {
-//     rows.push({
-//       id: i + 1,
-//       user_id: e._id,
-//       fullname: e.fullname,
-//       phone_number: e.phone_number,
-//       telegram_id: e.telegram_id
-//     })
-//   })
-
-//   const handleRowClick: GridEventListener<'rowClick'> = (params) => {
-//     setOpen(true)
-//     setText(params.row.fullname)
-//     setUserId(params.row.user_id)
-//   };
-
-//   return (
-//     <>
-//       <BasicModal open={open} setOpen={setOpen} text={text} userId={userId}  />
-
-//       <div style={{ height: 540, width: "100%" }}>
-//         <DataGrid
-//           onRowClick={handleRowClick}
-//           rows={rows}
-//           columns={columns}
-//           pageSize={8}
-//           rowsPerPageOptions={[5]}
-//           checkboxSelection
-//         />
-//       </div>
-//     </>
-//   );
-// };
-
-// import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -98,17 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-export const CustomizedTables: React.FC<MiniDrawerProps> = (props) => {
+export const UsersTable: React.FC<UsersTableProps> = (props) => {
   const rows: IRow[] = [];
   const users: IPerson[] = props.users as any;
   const [open, setOpen] = useState<boolean>(false);
@@ -116,7 +43,7 @@ export const CustomizedTables: React.FC<MiniDrawerProps> = (props) => {
   const [userId, setUserId] = useState<string>("");
   const [balance, setBalance] = useState<number>();
 
-  users?.forEach((e, i) => {
+  users && users.forEach((e, i) => {
     rows.push({
       id: i + 1,
       user_id: e._id,

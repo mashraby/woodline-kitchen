@@ -13,7 +13,7 @@ export interface IPerson {
     role: IRole
 }
 
-export interface MiniDrawerProps {
+export interface UsersTableProps {
     users?: IPerson[];
 }
 
