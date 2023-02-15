@@ -1,6 +1,13 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { IPerson } from "../interfaces/users.interfaces";
 
+export const login = (username: string, password: string): Promise<AxiosResponse> => {
+  return axios.post("/", {
+    username,
+    password
+  })
+}
+
 export const getUsers = (): Promise<Array<IPerson>> => {
   return axios
   .get("/user")

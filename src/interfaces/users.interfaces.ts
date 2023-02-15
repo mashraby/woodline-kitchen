@@ -23,11 +23,13 @@ export interface IRow {
     fullname: string
     phone_number: string
     telegram_id: number
+    balance: number
 }
 
 export interface IOpenModalProps {
     userId: string
     open: boolean
-    setOpen: (newOpen: boolean) => void
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
     text: string
+    balance: number | undefined
 }
