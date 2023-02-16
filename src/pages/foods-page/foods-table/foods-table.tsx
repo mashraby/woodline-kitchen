@@ -6,7 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { IRole, IRolesProps } from "../../../interfaces/roles.interfaces";
+import { IFood, IFoodProps } from "../../../interfaces/foods.interfaces";
+import { useContext, useEffect, useState } from "react";
+import { getCategory } from "../../../services/api";
+import { ICategory } from "../../../interfaces/categorys.interfaces";
+import { ReloadContext } from "../../../context/reload.context";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -28,8 +32,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export const FoodsTable: React.FC<IRolesProps> = (props) => {
-  const roles: IRole[] = props.roles as any;
+export const FoodsTable: React.FC<IFoodProps> = (props) => {
+  const foods: IFood[] = props.foods as any;
+  const [ctgs, setCtgs] = useState<ICategory[]>([]);
+  const { reload } = useContext(ReloadContext);
+
+  useEffect((): void => {
+    getCategory().then((data) => setCtgs(data));
+  }, [reload]);
 
   return (
     <>
@@ -38,10 +48,28 @@ export const FoodsTable: React.FC<IRolesProps> = (props) => {
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell>Title</StyledTableCell>
+              <StyledTableCell>Food Name</StyledTableCell>
+              <StyledTableCell>Food Cost</StyledTableCell>
+              <StyledTableCell>Food Category</StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody></TableBody>
+          <TableBody>
+            {foods &&
+              foods.map((food, index) => {
+                return (
+                  <StyledTableRow key={food._id}>
+                    <StyledTableCell component="th" scope="row">
+                      {index + 1}
+                    </StyledTableCell>
+                    <StyledTableCell>{food.name}</StyledTableCell>
+                    <StyledTableCell>{food.cost}</StyledTableCell>
+                    <StyledTableCell>
+                      {ctgs.find((c) => c._id === food.category)?.name}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                );
+              })}
+          </TableBody>
         </Table>
       </TableContainer>
     </>
