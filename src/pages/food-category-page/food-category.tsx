@@ -8,7 +8,7 @@ import { Button, Typography } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { ICategory } from "../../interfaces/categorys.interfaces";
 import { FoodCategoryTable } from "./category-table/category-table";
-import { AddCategoryModal } from "./add-category-modal/add-modal-modal";
+import { AddCategoryModal } from "./add-category-modal/add-category-modal";
 
 const FlexWrapper = styled.div`
   display: flex;

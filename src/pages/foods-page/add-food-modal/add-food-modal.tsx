@@ -37,11 +37,15 @@ export const AddFoodModal: React.FC<IAddFoodProps> = (props) => {
   const { open, setOpen } = props;
   const [ctgs, setCtgs] = useState<ICategory[]>([]);
   const handleClose = () => setOpen(false);
+  const [nameEmpty, setNameEmty] = useState<boolean>(false);
+  const [costEmpty, setCostEmty] = useState<boolean>(false);
+  const [ctgEmpty, setCtgEmty] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [cost, setCost] = useState<number>();
   const [selectedCtg, setSelectedCtg] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
+    setCtgEmty(false);
     setSelectedCtg(event.target.value as string);
   };
   const { reload, setReload } = useContext(ReloadContext);
@@ -53,22 +57,31 @@ export const AddFoodModal: React.FC<IAddFoodProps> = (props) => {
   }, [reload]);
 
   const handlePostFood = (): void => {
-    setReload(!reload);
-    postFood(name, cost, selectedCtg)
-      .then((res: AxiosResponse) => {
-        if (res.status === 200) {
-          toast.success("Food yaratildi!");
-        }
-      })
-      .finally(() => {
-        setOpen(false);
-        setReload(!reload);
-      })
-      .catch((err: AxiosError) => {
-        if (err) {
-          toast.error("Food yaratilmadi qayta urinib ko'ring!");
-        }
-      });
+    if (name !== "" && cost !== ("" || undefined) && selectedCtg !== "") {
+      setReload(!reload);
+      postFood(name, cost, selectedCtg)
+        .then((res: AxiosResponse) => {
+          if (res.status === 200) {
+            toast.success("Food yaratildi!");
+          }
+        })
+        .finally(() => {
+          setOpen(false);
+          setReload(!reload);
+          setName("");
+          setCost(undefined);
+          setSelectedCtg("");
+        })
+        .catch((err: AxiosError) => {
+          if (err) {
+            toast.error("Food yaratilmadi qayta urinib ko'ring!");
+          }
+        });
+    } else {
+      setNameEmty(true);
+      setCostEmty(true);
+      setCtgEmty(true);
+    }
   };
 
   return (
@@ -94,35 +107,52 @@ export const AddFoodModal: React.FC<IAddFoodProps> = (props) => {
               Добавить еду
             </Typography>
             <TextField
+              error={nameEmpty ? true : false}
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => {
+                setNameEmty(false);
                 setName(e.target.value);
               }}
               sx={{ mt: 2, width: "100%" }}
-              id="outlined-basic"
-              label="Напишите название еды"
+              id={nameEmpty ? "outlined-error" : "outlined-basic"}
+              label={nameEmpty ? "Введите значение" : "Напишите название еды"}
               variant="outlined"
             />
             <TextField
+              error={costEmpty ? true : false}
               type="number"
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => {
+                setCostEmty(false);
                 setCost(+e.target.value);
               }}
               sx={{ my: 2, width: "100%" }}
-              id="outlined-basic"
-              label="Напишите стоимость еды"
+              id={costEmpty ? "outlined-error" : "outlined-basic"}
+              label={costEmpty ? "Введите значение" : "Напишите стоимость еды"}
               variant="outlined"
             />
             <FormControl sx={{ mb: 2 }} fullWidth>
-              <InputLabel id="demo-simple-select-label">
-                Выберите категорию еды
+              <InputLabel
+                id={
+                  ctgEmpty
+                    ? "demo-simple-select-error-label"
+                    : "demo-simple-select-label"
+                }
+              >
+                {ctgEmpty ? "Введите значение" : "Выберите категорию еды"}
               </InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                error={ctgEmpty ? true : false}
+                labelId={
+                  ctgEmpty
+                    ? "demo-simple-select-error-label"
+                    : "demo-simple-select-label"
+                }
+                id={
+                  ctgEmpty ? "demo-simple-select-error" : "demo-simple-select"
+                }
                 value={selectedCtg}
                 label="Age"
                 onChange={handleChange}

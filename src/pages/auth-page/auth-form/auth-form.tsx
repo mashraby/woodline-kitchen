@@ -28,26 +28,33 @@ export const AuthForm: React.FC = () => {
   });
 
   const handleLogin = (): void => {
-    login(loginData.username, loginData.password).then(res => {
+    login(loginData.username, loginData.password).then((res) => {
       console.log(res);
-    })
-  } 
+    });
+  };
 
   return (
     <AuthWrapper>
       <Typography className="auth-form__heading" variant="h4" component="div">
         <Title>Login</Title>
       </Typography>
-      <TextField 
-        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-          setLoginData({ ...loginData, username: e.target.value })
-        }}
-        id="outlined-basic" 
-        label="Username" 
-        variant="outlined" />
       <TextField
-        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-          setLoginData({ ...loginData, password: e.target.value })
+        required={true}
+        onChange={(
+          e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        ) => {
+          setLoginData({ ...loginData, username: e.target.value });
+        }}
+        id="outlined-basic"
+        label="Username"
+        variant="outlined"
+      />
+      <TextField
+        required={true}
+        onChange={(
+          e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        ) => {
+          setLoginData({ ...loginData, password: e.target.value });
         }}
         id="outlined-password-input"
         label="Password"

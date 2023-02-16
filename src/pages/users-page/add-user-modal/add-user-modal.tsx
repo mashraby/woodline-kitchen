@@ -50,6 +50,7 @@ export const AddUserModal: React.FC<IAddUserProps> = (props) => {
               Add User
             </Typography>
             <TextField
+              required={true}
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => {

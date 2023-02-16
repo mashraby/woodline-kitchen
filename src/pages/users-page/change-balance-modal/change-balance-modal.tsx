@@ -60,6 +60,7 @@ export const BasicModal: React.FC<IOpenModalProps> = (props) => {
             {"Balance: " + balance}
           </Typography>
           <TextField
+            required={true}
             type="number"
             onChange={(
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

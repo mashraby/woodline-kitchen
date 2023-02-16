@@ -27,26 +27,32 @@ const style = {
 export const AddRoleModal: React.FC<IAddRoleProps> = (props) => {
   const { open, setOpen } = props;
   const handleClose = () => setOpen(false);
+  const [empty, setEmpty] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const { reload, setReload } = useContext(ReloadContext);
 
   const createRole = (): void => {
-    setReload(!reload);
-    postRole(title)
-      .then((res: AxiosResponse) => {
-        if (res.status === 200) {
-          toast.success("Role yaratildi!");
-        }
-      })
-      .finally((): void => {
-        setReload(!reload);
-        setOpen(false);
-      })
-      .catch((err: AxiosError) => {
-        if (err) {
-          toast.error("Role yaratilmadi qayta urinib ko'ring");
-        }
-      });
+    if (title !== "") {
+      setReload(!reload);
+      postRole(title)
+        .then((res: AxiosResponse) => {
+          if (res.status === 200) {
+            toast.success("Role yaratildi!");
+          }
+        })
+        .finally((): void => {
+          setReload(!reload);
+          setTitle("");
+          setOpen(false);
+        })
+        .catch((err: AxiosError) => {
+          if (err) {
+            toast.error("Role yaratilmadi qayta urinib ko'ring");
+          }
+        });
+    } else {
+      setEmpty(true);
+    }
   };
 
   return (
@@ -72,14 +78,17 @@ export const AddRoleModal: React.FC<IAddRoleProps> = (props) => {
               Добавить роль
             </Typography>
             <TextField
+              error={empty ? true : false}
+              required={true}
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => {
+                setEmpty(false);
                 setTitle(e.target.value);
               }}
               sx={{ my: 2, width: "100%" }}
-              id="outlined-basic"
-              label="Напишите название роли"
+              id={empty ? "outlined-error" : "outlined-basic"}
+              label={empty ? "Введите значение" : "Напишите название роли"}
               variant="outlined"
             />
             <Button

@@ -28,24 +28,31 @@ export const AddCategoryModal: React.FC<IAddCtgProps> = (props) => {
   const { open, setOpen } = props;
   const handleClose = () => setOpen(false);
   const [name, setName] = useState<string>("");
+  const [empty, setEmpty] = useState<boolean>(false);
   const { reload, setReload } = useContext(ReloadContext);
 
   const createCategory = (): void => {
-    setReload(!reload)
-    postCategory(name).then((res: AxiosResponse) => {
-        if(res.status === 200) {
-            toast.success("Category yaratildi!")
-        }
-    })
-    .finally((): void => {
-        setReload(!reload)
-        setOpen(false)
-    })
-    .catch((err: AxiosError) => {
-        if(err) {
-            toast.error("Category qo'shilmadi qayta urinib koring")
-        }
-    })
+    if (name !== "") {
+      setReload(!reload);
+      postCategory(name)
+        .then((res: AxiosResponse) => {
+          if (res.status === 200) {
+            toast.success("Category yaratildi!");
+          }
+        })
+        .finally((): void => {
+          setReload(!reload);
+          setOpen(false);
+          setName("");
+        })
+        .catch((err: AxiosError) => {
+          if (err) {
+            toast.error("Category qo'shilmadi qayta urinib koring");
+          }
+        });
+    } else {
+      setEmpty(true);
+    }
   };
 
   return (
@@ -71,14 +78,16 @@ export const AddCategoryModal: React.FC<IAddCtgProps> = (props) => {
               Добавить Категория
             </Typography>
             <TextField
+              error={empty ? true : false}
               onChange={(
                 e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
               ) => {
+                setEmpty(false);
                 setName(e.target.value);
               }}
               sx={{ my: 2, width: "100%" }}
-              id="outlined-basic"
-              label="Напишите название Категория"
+              id={empty ? "outlined-error" : "outlined-basic"}
+              label={empty ? "Введите значение" : "Напишите название Категория"}
               variant="outlined"
             />
             <Button
