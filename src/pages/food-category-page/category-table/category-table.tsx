@@ -6,7 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { IRole, IRolesProps } from "../../../interfaces/roles.interfaces";
+import {
+  ICategory,
+  IFoodCategoryProps,
+} from "../../../interfaces/categorys.interfaces";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -28,8 +31,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export const RolesTable: React.FC<IRolesProps> = (props) => {
-  const roles: IRole[] = props.roles as any;
+export const FoodCategoryTable: React.FC<IFoodCategoryProps> = (props) => {
+  const categorys: ICategory[] = props.categorys as any;
 
   return (
     <>
@@ -38,18 +41,21 @@ export const RolesTable: React.FC<IRolesProps> = (props) => {
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell>Title</StyledTableCell>
+              <StyledTableCell>Category Name</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {roles?.map((role, index) => (
-              <StyledTableRow key={role._id}>
-                <StyledTableCell component="th" scope="row">
-                  {index + 1}
-                </StyledTableCell>
-                <StyledTableCell>{role.title}</StyledTableCell>
-              </StyledTableRow>
-            ))}
+            {categorys &&
+              categorys.map((ctg, index) => {
+                return (
+                  <StyledTableRow key={ctg._id}>
+                    <StyledTableCell component="th" scope="row">
+                      {index + 1}
+                    </StyledTableCell>
+                    <StyledTableCell>{ctg.name}</StyledTableCell>
+                  </StyledTableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </TableContainer>

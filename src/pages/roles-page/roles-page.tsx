@@ -47,14 +47,14 @@ export const RolesPage: React.FC = () => {
         >
           <FlexWrapper>
             <Typography variant="h4" component="h2">
-              Roles
+              Роли
             </Typography>
             <Button
               onClick={() => setOpen(true)}
               variant="contained"
               endIcon={<AddCircleOutlineIcon />}
             >
-              Add Role
+              Добавить роль
             </Button>
           </FlexWrapper>
           <RolesTable roles={roles} />
