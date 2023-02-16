@@ -64,3 +64,15 @@ export const postCategory = (name: string): Promise<AxiosResponse> => {
 export const getFoods = (): Promise<Array<IFood>> => {
   return axios.get("/food").then((res: AxiosResponse) => res.data);
 };
+
+export const postFood = (
+  name: string,
+  cost: number | undefined,
+  category: string
+): Promise<AxiosResponse> => {
+  return axios.post("/food", {
+    name,
+    cost,
+    category,
+  });
+};
