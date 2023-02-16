@@ -17,6 +17,10 @@ export const getUsers = (): Promise<Array<IPerson>> => {
     .then(res => res.data)
 };
 
+export const postUser = (fullname: string): Promise<AxiosResponse> => {
+  return axios.post("")
+} 
+
 export const postBalance = (
   id: string,
   amount: number | undefined,

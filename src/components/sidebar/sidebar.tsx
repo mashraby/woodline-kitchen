@@ -24,7 +24,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import PeopleIcon from "@mui/icons-material/People";
 import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
-import FoodBankIcon from '@mui/icons-material/FoodBank';
+import FoodBankIcon from "@mui/icons-material/FoodBank";
 
 const FlexWrapper = styledC.div`
   width: 100%;
@@ -147,7 +147,7 @@ const Drawer = styled(MuiDrawer, {
 export const MiniDrawer: React.FC = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -157,7 +157,7 @@ export const MiniDrawer: React.FC = () => {
   };
 
   return (
-      <>
+    <>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -201,16 +201,6 @@ export const MiniDrawer: React.FC = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          <NavLink to={`/users`}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Пользователи"} />
-              </ListItemButton>
-            </ListItem>
-          </NavLink>
           <NavLink to={`/roles`}>
             <ListItem disablePadding>
               <ListItemButton>
@@ -221,17 +211,17 @@ export const MiniDrawer: React.FC = () => {
               </ListItemButton>
             </ListItem>
           </NavLink>
-          <NavLink to={`/products`}>
+          <NavLink to={`/users`}>
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <FoodBankIcon />
+                  <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Продукты"} />
+                <ListItemText primary={"Пользователи"} />
               </ListItemButton>
             </ListItem>
           </NavLink>
-          <NavLink to={`/menus`}>
+          <NavLink to={`/food-category`}>
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -241,8 +231,18 @@ export const MiniDrawer: React.FC = () => {
               </ListItemButton>
             </ListItem>
           </NavLink>
+          <NavLink to={`/foods`}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <FoodBankIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Продукты"} />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
         </List>
       </Drawer>
-      </>
+    </>
   );
-}
+};

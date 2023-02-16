@@ -3,11 +3,11 @@ import { MiniDrawer } from "../../components/sidebar/sidebar";
 import { ReloadContext } from "../../context/reload.context";
 import { IPerson } from "../../interfaces/users.interfaces";
 import { getUsers } from "../../services/api";
-import { UsersTable } from "./users-table/users-table";
 import Box from "@mui/material/Box";
 import styled from "styled-components";
-import { Typography } from "@mui/material";
-import { AddUserModal } from "./add-user-modal/add-user-modal";
+import { Button, Typography } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { FoodsTable } from "./foods-table/foods-table";
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const FlexWrapper = styled.div`
   margin-bottom: 12px;
 `;
 
-export const UsersPage: React.FC = () => {
+export const FoodsPage: React.FC = () => {
   const [users, setUsers] = useState<IPerson[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const { reload } = useContext(ReloadContext);
@@ -30,16 +30,22 @@ export const UsersPage: React.FC = () => {
 
   return (
     <>
-      <AddUserModal open={open} setOpen={setOpen} />
       <Box sx={{ display: "flex" }}>
         <MiniDrawer />
         <Box component="main" sx={{ flexGrow: 1, px: 3, py: 12 }}>
           <FlexWrapper>
             <Typography variant="h4" component="h2">
-              Users
+              Foods
             </Typography>
+            <Button
+              onClick={(): void => setOpen(true)}
+              variant="contained"
+              endIcon={<AddCircleOutlineIcon />}
+            >
+              Add Food
+            </Button>
           </FlexWrapper>
-          <UsersTable users={users} />
+          <FoodsTable />
         </Box>
       </Box>
     </>
