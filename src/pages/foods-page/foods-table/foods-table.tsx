@@ -30,7 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export const FoodsTable: React.FC<IRolesProps> = (props) => {
   const roles: IRole[] = props.roles as any;
-  
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -38,12 +38,10 @@ export const FoodsTable: React.FC<IRolesProps> = (props) => {
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell align="right">Title</StyledTableCell>
+              <StyledTableCell>Title</StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            
-          </TableBody>
+          <TableBody></TableBody>
         </Table>
       </TableContainer>
     </>

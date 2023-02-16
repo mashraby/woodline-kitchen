@@ -69,7 +69,7 @@ export const AddRoleModal: React.FC<IAddRoleProps> = (props) => {
               variant="h4"
               component="div"
             >
-              Add Role
+              Добавить роль
             </Typography>
             <TextField
               onChange={(
@@ -79,7 +79,7 @@ export const AddRoleModal: React.FC<IAddRoleProps> = (props) => {
               }}
               sx={{ my: 2, width: "100%" }}
               id="outlined-basic"
-              label="Write a role title"
+              label="Напишите название роли"
               variant="outlined"
             />
             <Button
@@ -88,7 +88,7 @@ export const AddRoleModal: React.FC<IAddRoleProps> = (props) => {
               variant="contained"
               endIcon={<SendIcon />}
             >
-              Add Role
+              Добавить роль
             </Button>
           </Box>
         </Fade>

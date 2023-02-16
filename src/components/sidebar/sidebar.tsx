@@ -146,7 +146,7 @@ const Drawer = styled(MuiDrawer, {
 
 export const MiniDrawer: React.FC = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -182,7 +182,7 @@ export const MiniDrawer: React.FC = () => {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="Поиск…"
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
@@ -227,7 +227,7 @@ export const MiniDrawer: React.FC = () => {
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Меню"} />
+                <ListItemText primary={"Категория еды"} />
               </ListItemButton>
             </ListItem>
           </NavLink>
@@ -237,7 +237,7 @@ export const MiniDrawer: React.FC = () => {
                 <ListItemIcon>
                   <FoodBankIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Продукты"} />
+                <ListItemText primary={"Еда"} />
               </ListItemButton>
             </ListItem>
           </NavLink>

@@ -35,14 +35,14 @@ export const FoodsPage: React.FC = () => {
         <Box component="main" sx={{ flexGrow: 1, px: 3, py: 12 }}>
           <FlexWrapper>
             <Typography variant="h4" component="h2">
-              Foods
+              Еда
             </Typography>
             <Button
               onClick={(): void => setOpen(true)}
               variant="contained"
               endIcon={<AddCircleOutlineIcon />}
             >
-              Add Food
+              Добавить еду
             </Button>
           </FlexWrapper>
           <FoodsTable />

@@ -36,7 +36,7 @@ export const UsersPage: React.FC = () => {
         <Box component="main" sx={{ flexGrow: 1, px: 3, py: 12 }}>
           <FlexWrapper>
             <Typography variant="h4" component="h2">
-              Users
+              Пользователи
             </Typography>
           </FlexWrapper>
           <UsersTable users={users} />

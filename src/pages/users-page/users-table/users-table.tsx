@@ -43,52 +43,58 @@ export const UsersTable: React.FC<UsersTableProps> = (props) => {
   const [userId, setUserId] = useState<string>("");
   const [balance, setBalance] = useState<number>();
 
-  users && users.forEach((e, i) => {
-    rows.push({
-      id: i + 1,
-      user_id: e._id,
-      fullname: e.fullname,
-      phone_number: e.phone_number,
-      telegram_id: e.telegram_id,
-      balance: e.balance
+  users &&
+    users.forEach((e, i) => {
+      rows.push({
+        id: i + 1,
+        user_id: e._id,
+        fullname: e.fullname,
+        phone_number: e.phone_number,
+        telegram_id: e.telegram_id,
+        balance: e.balance,
+      });
     });
-  });
 
   const handleRowClick = (user: IPerson): void => {
     setOpen(true);
     setText(user.fullname);
     setUserId(user._id);
-    setBalance(user.balance)
+    setBalance(user.balance);
   };
-  
+
   return (
     <>
-      <BasicModal open={open} setOpen={setOpen} text={text} userId={userId} balance={balance} />
+      <BasicModal
+        open={open}
+        setOpen={setOpen}
+        text={text}
+        userId={userId}
+        balance={balance}
+      />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell align="right">Full Name</StyledTableCell>
-              <StyledTableCell align="right">Telegram ID</StyledTableCell>
-              <StyledTableCell align="right">Phone Number</StyledTableCell>
-              <StyledTableCell align="right">Balance</StyledTableCell>
+              <StyledTableCell>Full Name</StyledTableCell>
+              <StyledTableCell>Telegram ID</StyledTableCell>
+              <StyledTableCell>Phone Number</StyledTableCell>
+              <StyledTableCell>Balance</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users?.map((user, index) => (
-              <StyledTableRow onClick={()=> handleRowClick(user)} key={user._id}>
+              <StyledTableRow
+                onClick={() => handleRowClick(user)}
+                key={user._id}
+              >
                 <StyledTableCell component="th" scope="row">
                   {index + 1}
                 </StyledTableCell>
-                <StyledTableCell align="right">{user.fullname}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {user.telegram_id}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {user.phone_number}
-                </StyledTableCell>
-                <StyledTableCell align="right">{user.balance}</StyledTableCell>
+                <StyledTableCell>{user.fullname}</StyledTableCell>
+                <StyledTableCell>{user.telegram_id}</StyledTableCell>
+                <StyledTableCell>{user.phone_number}</StyledTableCell>
+                <StyledTableCell>{user.balance}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
