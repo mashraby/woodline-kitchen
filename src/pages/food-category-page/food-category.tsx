@@ -8,6 +8,7 @@ import { Button, Typography } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { ICategory } from "../../interfaces/categorys.interfaces";
 import { FoodCategoryTable } from "./category-table/category-table";
+import { AddCategoryModal } from "./add-category-modal/add-modal-modal";
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ export const FoodCategoryPage: React.FC = () => {
   
   return (
     <>
+      <AddCategoryModal open={open} setOpen={setOpen} />
       <Box sx={{ display: "flex" }}>
         <MiniDrawer />
         <Box component="main" sx={{ flexGrow: 1, px: 3, py: 12 }}>

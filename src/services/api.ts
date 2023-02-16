@@ -53,3 +53,9 @@ export const postRole = (title: string): Promise<AxiosResponse> => {
 export const getCategory = (): Promise<Array<ICategory>> => {
   return axios.get("/category").then((res) => res.data)
 }
+
+export const postCategory = (name: string): Promise<AxiosResponse> => {
+  return axios.post("/category", {
+    name
+  })
+}
