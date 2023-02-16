@@ -4,7 +4,9 @@ import { ToastContainer } from "react-toastify";
 import { AuthPage } from "./pages/auth-page/auth-page";
 import { RolesPage } from "./pages/roles-page/roles-page";
 import { UsersPage } from "./pages/users-page/users-page";
+import { FoodsPage } from "./pages/foods-page/foods";
 import "react-toastify/dist/ReactToastify.css";
+import { FoodCategoryPage } from "./pages/food-category-page/food-category";
 
 export const App: React.FC = () => {
   return (
@@ -14,6 +16,8 @@ export const App: React.FC = () => {
         <Route path="/login" element={<AuthPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/roles" element={<RolesPage />} />
+        <Route path="/foods" element={<FoodsPage />} />
+        <Route path="/food-category" element={<FoodCategoryPage />} />
       </Routes>
     </div>
   );
